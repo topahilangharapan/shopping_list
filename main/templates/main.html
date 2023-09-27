@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<nav class="navbar bg-body-tertiary", style="margin-bottom: 2%">
+    <div class="container-fluid">
+        <a class="navbar-brand", style="font-weight: bold">
+            <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/2/2b/Logo_Détective_Conan_%28ja%29.svg/1200px-Logo_Détective_Conan_%28ja%29.svg.png" alt="Logo" width="90" height="24" class="d-inline-block align-text-top" style="padding-right: 10px">
+            Musthofa Joko Anggoro</a>
+        <a href="{% url 'main:logout' %}">
+            <button>
+                Logout
+            </button>
+        </a>
+    </div>
+</nav>
+
 <h1>Shopping List Page</h1>
 
 <h3>Name:</h3>
@@ -25,6 +39,18 @@
         <td>{{product.price}}</td>
         <td>{{product.description}}</td>
         <td>{{product.date_added}}</td>
+        <td>
+            <a href="{% url 'main:edit_product' product.pk %}">
+                <button>
+                    Edit
+                </button>
+            </a>
+            <a href="{% url 'main:delete_product' product.pk %}">
+                <button>
+                    Delete
+                </button>
+            </a>
+        </td>
     </tr>
     {% endfor %}
 </table>
@@ -38,11 +64,5 @@
 </a>
 
 <h5>Sesi terakhir login: {{ last_login }}</h5>
-
-<a href="{% url 'main:logout' %}">
-    <button>
-        Logout
-    </button>
-</a>
 
 {% endblock content %}
